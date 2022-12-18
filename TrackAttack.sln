@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackAttack", "TrackAttack\TrackAttack.csproj", "{8ABAB171-EC19-402C-BE03-68882B1FAC21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8ABAB171-EC19-402C-BE03-68882B1FAC21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ABAB171-EC19-402C-BE03-68882B1FAC21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ABAB171-EC19-402C-BE03-68882B1FAC21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ABAB171-EC19-402C-BE03-68882B1FAC21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B57FA8E-9B69-4963-A15F-9B92DD044308}
+	EndGlobalSection
+EndGlobal
