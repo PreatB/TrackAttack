@@ -35,7 +35,7 @@ namespace TrackAttack
             createTable(sqlText, sqlConn);
 
             //Tracks Table
-            sqlText = "CREATE TABLE IF NOT EXISTS Tracks(trackId INTEGER PRIMARY KEY AUTOINCREMENT, trackName TEXT, trackLength TEXT, trackType INT, imagePath TEXT);";
+            sqlText = "CREATE TABLE IF NOT EXISTS Tracks(trackId INTEGER PRIMARY KEY AUTOINCREMENT, trackName TEXT, trackLength TEXT, trackType TEXT, imagePath TEXT);";
             createTable(sqlText, sqlConn);
 
             //Session Table
@@ -50,7 +50,7 @@ namespace TrackAttack
 
         public static void createTable(string sqlString, SQLiteConnection sqlConn) {
 
-            
+            SQLiteCommand sqlCmd;
             sqlCmd = sqlConn.CreateCommand();
             sqlCmd.CommandText = sqlString;
             sqlCmd.ExecuteNonQuery();

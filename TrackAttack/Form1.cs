@@ -13,8 +13,8 @@ namespace TrackAttack
 {
     public partial class Form1 : Form
     {
-        List<TrackClass> videoList;
-
+        public List<VideoClass> videoList;
+        public List<SessionClass> sessionList;
         public Form1()
         {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace TrackAttack
 
 
             videoList = VideoListPanel.loadVideoList();
-
+            sessionList = SessionPanel.loadSessionDB();
         }
 
 
@@ -91,26 +91,65 @@ namespace TrackAttack
         }
 
         //fix after create table funcs
-        private void drawPanelTwo() {
+        private void drawPanelTwo()
+        {
 
             string currentTrack = listBoxTracks.Text;
-            IDictionary<int, int> videoCounts = new Dictionary<int,int>();
+            IDictionary<int, int> videoCounts = new Dictionary<int, int>();
 
-            foreach (TrackClass trackItem in videoList){
-                if (videoCounts.ContainsKey(trackItem.trackId))
+            foreach (VideoClass videoItem in videoList)
+            {
+                if (videoCounts.ContainsKey(videoItem.trackId))
                 {
-                    videoCounts[trackItem.trackId]++;
+                    videoCounts[videoItem.trackId]++;
 
                 }
-                else { 
-                videoCounts[trackItem.trackId] = 1;
+                else
+                {
+                    videoCounts[videoItem.trackId] = 1;
                 }
+
+
+                tableLayoutPanel1.RowCount = videoList.Count;
+
+
+
+
             }
+
+            List<string> listBoxArray = new List<string>();
+            foreach (int trackItem in videoCounts.Keys)
+            {
+                listBoxArray.Add(TrackClass.trackDict[trackItem] + " (" + videoCounts[trackItem].ToString() + ")");
+
+
+            }
+            listBoxTracks.DataSource = listBoxArray;
+
+
+
         }
 
-            
+        private void btnAddVideo_Click(object sender, EventArgs e)
+        {
 
 
+
+
+
+
+
+
+
+
+
+        }
+
+        private void btnNewSession_Click(object sender, EventArgs e)
+        {
+            Form form = new FormAddSession();
+            form.Show();
+
+        }
     }
-    
 }

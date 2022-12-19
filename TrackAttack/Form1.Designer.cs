@@ -43,11 +43,13 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnNewSession = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelContent.SuspendLayout();
             this.Options.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -132,7 +134,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Overview";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // tabPage2
             // 
@@ -148,7 +149,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Videos";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // txtVideoSearch
             // 
@@ -165,6 +165,7 @@
             this.btnAddVideo.TabIndex = 1;
             this.btnAddVideo.Text = "New Video";
             this.btnAddVideo.UseVisualStyleBackColor = true;
+            this.btnAddVideo.Click += new System.EventHandler(this.btnAddVideo_Click);
             // 
             // listBoxTracks
             // 
@@ -182,7 +183,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.18671F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 69);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -193,6 +194,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnNewSession);
             this.tabPage3.Location = new System.Drawing.Point(154, 4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -221,6 +223,16 @@
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // btnNewSession
+            // 
+            this.btnNewSession.Location = new System.Drawing.Point(849, 16);
+            this.btnNewSession.Name = "btnNewSession";
+            this.btnNewSession.Size = new System.Drawing.Size(163, 34);
+            this.btnNewSession.TabIndex = 0;
+            this.btnNewSession.Text = "New Session";
+            this.btnNewSession.UseVisualStyleBackColor = true;
+            this.btnNewSession.Click += new System.EventHandler(this.btnNewSession_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -239,6 +251,7 @@
             this.Options.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -260,6 +273,7 @@
         public  System.Windows.Forms.TextBox txtVideoSearch;
         public  System.Windows.Forms.Button btnAddVideo;
         public  System.Windows.Forms.ListBox listBoxTracks;
+        private System.Windows.Forms.Button btnNewSession;
     }
 }
 

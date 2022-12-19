@@ -14,7 +14,7 @@ namespace TrackAttack
         public int trackId;
         public string filePath;
         public float trackTemp;
-
+        
 
 
         public SessionClass(int sessionId, int trackId, string filePath, float trackTemp)
@@ -43,7 +43,7 @@ namespace TrackAttack
         public int videoLength;
 
 
-        public TrackClass(int videoId, string videoName, string videoTime, int videoLength, string videoPath, int trackId, float trackTemp, int sessionId, string analysed)
+        public VideoClass(int videoId, string videoName, string videoTime, int videoLength, string videoPath, int trackId, float trackTemp, int sessionId, string analysed)
         {
 
             this.videoName = videoName;
@@ -74,12 +74,24 @@ namespace TrackAttack
         public int trackId;
         public string trackName;
         public int trackLength;
-        public string tracktype;
+        public string trackType;
         public string imagePath;
+        public static IDictionary<int, string> trackDict = new Dictionary<int, string>();
+
+
 
         
-        public TrackClass() { 
-        
+        public TrackClass(int trackId, string trackName, int trackLength, string trackType, string imagePath) {
+            this.trackId = trackId;
+            this.trackName = trackName;
+            this.trackLength = trackLength;
+            this.trackType = trackType;
+            this.imagePath = imagePath;
+
+            if (!trackDict.ContainsKey(trackId)) {
+                trackDict.Add(trackId, trackName);
+            }
+
         
         
         
