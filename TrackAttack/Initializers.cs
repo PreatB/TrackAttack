@@ -39,7 +39,7 @@ namespace TrackAttack
             createTable(sqlText, sqlConn);
 
             //Session Table
-            sqlText = "CREATE TABLE IF NOT EXISTS Sessions(sessionId INTEGER PRIMARY KEY AUTOINCREMENT, trackId INT, filePath TEXT, trackTemp FLOAT);";
+            sqlText = "CREATE TABLE IF NOT EXISTS Sessions(sessionId INTEGER PRIMARY KEY AUTOINCREMENT, sessionName TEXT, trackId INT, driverIndex TEXT ,filePath TEXT, trackTemp FLOAT);";
             createTable(sqlText, sqlConn);
 
 

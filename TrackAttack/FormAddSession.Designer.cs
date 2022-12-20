@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSessionNameInput = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lblFileName = new System.Windows.Forms.Label();
             this.btnOpenFile = new System.Windows.Forms.Button();
@@ -45,14 +45,16 @@
             this.listBoxDriverSelect = new System.Windows.Forms.ListBox();
             this.lblCounter = new System.Windows.Forms.Label();
             this.btnSubmitSession = new System.Windows.Forms.Button();
+            this.btnRefreshTracks = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtSessionNameInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(202, 26);
-            this.textBox1.TabIndex = 0;
+            this.txtSessionNameInput.Location = new System.Drawing.Point(12, 40);
+            this.txtSessionNameInput.Name = "txtSessionNameInput";
+            this.txtSessionNameInput.Size = new System.Drawing.Size(202, 26);
+            this.txtSessionNameInput.TabIndex = 0;
+            
             // 
             // openFileDialog1
             // 
@@ -207,11 +209,22 @@
             this.btnSubmitSession.UseVisualStyleBackColor = true;
             this.btnSubmitSession.Click += new System.EventHandler(this.btnSubmitSession_Click);
             // 
+            // btnRefreshTracks
+            // 
+            this.btnRefreshTracks.Location = new System.Drawing.Point(196, 349);
+            this.btnRefreshTracks.Name = "btnRefreshTracks";
+            this.btnRefreshTracks.Size = new System.Drawing.Size(108, 27);
+            this.btnRefreshTracks.TabIndex = 16;
+            this.btnRefreshTracks.Text = "Refresh";
+            this.btnRefreshTracks.UseVisualStyleBackColor = true;
+            this.btnRefreshTracks.Click += new System.EventHandler(this.btnRefreshTracks_Click);
+            // 
             // FormAddSession
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 550);
+            this.Controls.Add(this.btnRefreshTracks);
             this.Controls.Add(this.btnSubmitSession);
             this.Controls.Add(this.lblCounter);
             this.Controls.Add(this.listBoxDriverSelect);
@@ -227,7 +240,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnOpenFile);
             this.Controls.Add(this.lblFileName);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSessionNameInput);
             this.Name = "FormAddSession";
             this.Text = "FormAddSession";
             this.Load += new System.EventHandler(this.FormAddSession_Load);
@@ -239,12 +252,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSessionNameInput;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBoxTrackSelect;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddTrack;
         private System.Windows.Forms.Label label3;
@@ -256,5 +268,7 @@
         private System.Windows.Forms.ListBox listBoxDriverSelect;
         private System.Windows.Forms.Label lblCounter;
         private System.Windows.Forms.Button btnSubmitSession;
+        public System.Windows.Forms.ListBox listBoxTrackSelect;
+        private System.Windows.Forms.Button btnRefreshTracks;
     }
 }

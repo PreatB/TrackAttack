@@ -32,7 +32,7 @@ namespace TrackAttack
             while (rea.Read())
             {
 
-                sessionList.Add(new SessionClass(rea.GetInt32(0), rea.GetInt32(1), rea.GetString(2), rea.GetFloat(3)));
+                sessionList.Add(new SessionClass(rea.GetInt32(0), rea.GetString(1), rea.GetInt32(2), rea.GetString(3), rea.GetString(4), rea.GetFloat(5)));
 
 
             }

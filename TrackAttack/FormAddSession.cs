@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CsvHelper;
+using System.Data.SQLite;
 
 
 namespace TrackAttack
@@ -25,15 +26,17 @@ namespace TrackAttack
         {
             Form form = new FormAddTrack();
             form.Show();
-
             
+            listBoxTrackSelect.DataSource = TrackClass.loadTrackList();
+
+
 
         }
 
         private void FormAddSession_Enter(object sender, EventArgs e)
         {
 
-            
+            listBoxTrackSelect.DataSource = TrackClass.loadTrackList();
 
 
             //load listboxes for tracks again
@@ -81,13 +84,16 @@ namespace TrackAttack
         {
             listBoxDriverSelect.Hide();
             radioFileUpload.Checked = true;
+            listBoxTrackSelect.DataSource = TrackClass.loadTrackList();
 
         }
 
         private void btnSubmitSession_Click(object sender, EventArgs e)
         {
-            if (radioFileUpload.Checked) { 
-            
+            if (radioFileUpload.Checked) {
+                string result = addSessionToDb();
+                File.Copy(openFileDialog1.FileName, result);
+
             }
             else { createCSV(); }
 
@@ -127,17 +133,9 @@ namespace TrackAttack
 
             }
 
-            
+            //update db
 
-            
-            
-
-        
-        
-        
-        
-        
-        
+           
         }
         public static Stream GenerateStreamFromString(string s)
         {
@@ -168,18 +166,105 @@ namespace TrackAttack
                 }
             }
         }
+
+        public string addSessionToDb() {
+
+            SQLiteConnection sqlConn;
+
+            // Create a new database connection and new db if not exists
+            sqlConn = new SQLiteConnection("Data Source=VideoDB.db;");
+            sqlConn.Open();
+
+            string sqlQuery;
+            SQLiteCommand sqlCmd = sqlConn.CreateCommand();
+            
             
 
 
-
+            sqlQuery = "INSERT INTO Sessions(sessionName, trackId, driverIndex ,filePath, trackTemp) VALUES (@sessionName, @trackId, @driverIndex , @filePath, @trackTemp)";
             
+            sqlCmd.CommandText = sqlQuery;
+            sqlCmd.Parameters.AddWithValue("@sessionName", txtSessionNameInput.Text);
+            foreach (TrackClass track in TrackClass.trackList) {
+                if (track.trackName == listBoxTrackSelect.Text) { 
+                sqlCmd.Parameters.AddWithValue("@trackId", TrackClass.findTrackId(listBoxTrackSelect.Text));
+                }
+            
+            
+            }
+            sqlCmd.Parameters.AddWithValue("@driverIndex", listBoxDriverSelect.Text);
+            sqlCmd.Parameters.AddWithValue("@filePath", "None");
+            sqlCmd.Parameters.AddWithValue("@trackTemp", 24.0);
+            int result = sqlCmd.ExecuteNonQuery();
+            sqlConn.Close();
+
+
+            sqlConn = new SQLiteConnection("Data Source=VideoDB.db;");
+            sqlConn.Open();
+            sqlCmd = sqlConn.CreateCommand();
+
+            SQLiteDataReader rea;
+
+            sqlQuery = "SELECT COUNT(*) FROM Sessions";
+            sqlCmd.CommandText = sqlQuery;
+            rea = sqlCmd.ExecuteReader();
+
+            int maxId = 0;
+            if (rea.HasRows)
+            {
+                rea.Read();
+                maxId= rea.GetInt32(0);
+            }
+            
+            rea.Close();
+
+            sqlQuery = "UPDATE Sessions SET filePath =@filePath WHERE sessionId=@maxId;";
+            sqlCmd.CommandText = sqlQuery;
+            string tempPath = "VideoData//LapData//" + maxId.ToString() + ".csv";
+            sqlCmd.Parameters.AddWithValue("@filePath",tempPath);
+            sqlCmd.Parameters.AddWithValue("@maxId", maxId);
+            result = sqlCmd.ExecuteNonQuery();
+
+
+
+            if (result == 1)
+            {
+                MessageBox.Show("Session Added Succesfully");
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("Failed to add Session");
+            }
+
+
+
+
+
+            return tempPath;
+        
+        
+        }
+
 
 
         
-
+        //when the user selects a file. refresh the listbox for the list of drivers
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
+            
             getHeaders();
         }
+
+        private void btnRefreshTracks_Click(object sender, EventArgs e)
+        {
+            listBoxTrackSelect.DataSource = TrackClass.loadTrackList();
+            
+            listBoxTrackSelect.Refresh();
+        }
+
+        
     }
 }

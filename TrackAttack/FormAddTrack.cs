@@ -27,23 +27,27 @@ namespace TrackAttack
             sqlConn.Open();
 
             string sqlQuery;
-            sqlQuery = "INSERT OR IGNORE INTO Tracks(trackName, trackLength) VALUES (@trackName, @trackLength)";
+            sqlQuery = "INSERT OR IGNORE INTO Tracks(trackName, trackLength, trackType, imagePath) VALUES (@trackName, @trackLength , @trackType, @imagePath)";
             SQLiteCommand sqlCmd = sqlConn.CreateCommand();
             sqlCmd.CommandText = sqlQuery;
-            sqlCmd.Parameters.AddWithValue("@trackName", richtxtTrackName.ToString());
-            sqlCmd.Parameters.AddWithValue("@trackLength", txtTrackLength);
+            sqlCmd.Parameters.AddWithValue("@trackName", richtxtTrackName.Text.ToString());
+            sqlCmd.Parameters.AddWithValue("@trackLength", txtTrackLength.Text);
+            sqlCmd.Parameters.AddWithValue("@trackType","None");
+                sqlCmd.Parameters.AddWithValue("@imagePath","None");
             int result = sqlCmd.ExecuteNonQuery();
 
             if (result == 1)
             {
                 MessageBox.Show("Track Added Succesfully");
 
-
+                
 
             }
             else {
                 MessageBox.Show("Failed to add track");
             }
+            
+
 
             this.Close();
 
