@@ -17,7 +17,8 @@ namespace TrackAttack
         public float trackTemp;
         public string sessionName;
         public string driverIndex;
-        
+        public static List<SessionClass> sessionList = new List<SessionClass>();
+        public static List<string> sessionNameList = new List<string>();
 
 
         public SessionClass(int sessionId, string sessionName, int trackId, string driverIndex, string filePath, float trackTemp)
@@ -29,8 +30,56 @@ namespace TrackAttack
             this.trackTemp = trackTemp;
             this.driverIndex = driverIndex;
 
+            sessionNameList.Add(sessionName);
 
         }
+
+
+        public static void loadSessionsDB() {
+
+            SQLiteConnection sqlConn;
+            SQLiteDataReader rea;
+            SQLiteCommand sqlCmd;
+            sessionList.Clear();
+            sessionNameList.Clear();
+
+            sqlConn = new SQLiteConnection("Data Source=VideoDB.db;");
+            sqlConn.Open();
+
+
+            sqlCmd = sqlConn.CreateCommand();
+            sqlCmd.CommandText = "SELECT * FROM Sessions";
+            rea = sqlCmd.ExecuteReader();
+
+
+
+
+            while (rea.Read())
+            {
+                Console.WriteLine(rea.GetInt32(0));
+                Console.WriteLine(rea.GetString(1));
+                Console.WriteLine(rea.GetInt32(2));
+                Console.WriteLine(rea.GetString(3));
+                Console.WriteLine(rea.GetString(4));
+                Console.WriteLine(rea.GetFloat(5));
+                SessionClass tempObj = new SessionClass(rea.GetInt32(0), rea.GetString(1), rea.GetInt32(2), rea.GetString(3), rea.GetString(4), rea.GetFloat(5));
+                sessionList.Add(tempObj);
+                
+
+            }
+
+            sqlConn.Close();
+
+
+
+
+
+
+
+        }
+
+
+
 
 
 
